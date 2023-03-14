@@ -62,7 +62,7 @@ const handleSubmit = async(e) => {
 
   loader(messageDiv)
 
-  const response = await fetch('http://localhost:5000/api',{
+  const response = await fetch('https://jaydenx.onrender.com/api',{
     method:'POST',
     headers: {
       'Content-Type':'application/json'
