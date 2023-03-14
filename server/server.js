@@ -9,8 +9,8 @@ dotenv.config();
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
-});//我试一下
-console.log(process.env.OPENAI_API_KEY);
+});
+
 const openai = new OpenAIApi(configuration);
 
 const app = express();
@@ -25,10 +25,10 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.post("/api", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const prompt = req.body.prompt;
-    console.log(prompt);
+
     const response = await openai.createCompletion({
         model:"text-davinci-003",
         prompt:`${prompt}`,
@@ -39,7 +39,7 @@ app.post("/api", async (req, res) => {
         presence_penalty:0,
 
   });
-    console.log('1', response)
+
     res.status(200).send({
         bot:response.data.choices[0].text
     })
